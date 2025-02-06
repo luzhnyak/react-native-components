@@ -3,19 +3,28 @@ import { View, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 type StarRatingProps = {
-  size: number;
+  starSize: number;
   rating?: number;
-  setRating: (rating: number) => void;
+  onChange?: (rating: number) => void;
 };
 
-const StarRating: FC<StarRatingProps> = ({ size, rating = 0, setRating }) => {
+const StarRating: FC<StarRatingProps> = ({
+  starSize = 24,
+  rating = 0,
+  onChange,
+}) => {
   return (
     <View style={{ flexDirection: "row" }}>
       {[1, 2, 3, 4, 5].map((star) => (
-        <TouchableOpacity key={star} onPress={() => setRating(star)}>
+        <TouchableOpacity
+          key={star}
+          onPress={() => {
+            onChange && onChange(star);
+          }}
+        >
           <FontAwesome
             name={star <= rating ? "star" : "star-o"}
-            size={size}
+            size={starSize}
             color={star <= rating ? "gold" : "gray"}
             style={{ marginRight: 4 }}
           />

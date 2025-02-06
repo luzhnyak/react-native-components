@@ -18,7 +18,7 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <StarRating size={24} setRating={console.log} />
+        <StarRating starSize={24} onChange={console.log} />
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
